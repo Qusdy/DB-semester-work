@@ -65,7 +65,7 @@ WHERE status = 'completed';
 
 
 # 3 Запрос
-
+## Запрос  с IN
 ```sql
 -- Без индекса
 EXPLAIN (ANALYZE, BUFFERS)
@@ -100,13 +100,15 @@ WHERE work_id IN (5, 10, 15, 20);
 <img width="1593" height="403" alt="image" src="https://github.com/user-attachments/assets/1ca3b8f4-a7b2-4fab-8865-f647959e7750" />
 
 # 4 Запрос
-
+## %... запрос
 ```sql
 -- Без индекса
 EXPLAIN (ANALYZE, BUFFERS)
 SELECT * FROM workers 
 WHERE login LIKE '%1@mail.com';
 ```
+
+<img width="1134" height="302" alt="image" src="https://github.com/user-attachments/assets/ce0b5141-33d2-417b-a3e6-c67537792904" />
 
 ```sql
 -- Создание B-tree индекса
@@ -118,6 +120,7 @@ SELECT * FROM workers
 WHERE login LIKE '%1@mail.com';
 ```
 
+<img width="1138" height="302" alt="image" src="https://github.com/user-attachments/assets/d3637a5f-2e5d-4ba3-aedf-781edcb15160" />
 
 ```sql
 -- Создание Hash индекса
@@ -129,8 +132,10 @@ SELECT * FROM workers
 WHERE login LIKE '%1@mail.com';
 ```
 
-# 5 Запрос
+<img width="1129" height="301" alt="image" src="https://github.com/user-attachments/assets/53bd6384-4f9d-421e-8d3c-056a00463723" />
 
+# 5 Запрос
+## ...% Запрос
 ```sql
 -- Без индекса
 EXPLAIN (ANALYZE, BUFFERS)
@@ -138,6 +143,7 @@ SELECT * FROM buyers
 WHERE login LIKE 'buyer10%';
 ```
 
+<img width="1130" height="304" alt="image" src="https://github.com/user-attachments/assets/345f0e4c-9bad-484e-92fe-274af6b20399" />
 
 ```sql
 -- Создание B-tree индекса
@@ -149,6 +155,7 @@ SELECT * FROM buyers
 WHERE login LIKE 'buyer10%';
 ```
 
+<img width="1118" height="305" alt="image" src="https://github.com/user-attachments/assets/1f8a1b80-76b4-46ba-a331-1b2bd786abf0" />
 
 ```sql
 -- Создание Hash индекса
@@ -159,3 +166,5 @@ EXPLAIN (ANALYZE, BUFFERS)
 SELECT * FROM buyers 
 WHERE login LIKE 'buyer10%';
 ```
+
+<img width="1124" height="307" alt="image" src="https://github.com/user-attachments/assets/6663e434-0b51-4721-a9c1-8df6b7f7ed1c" />
