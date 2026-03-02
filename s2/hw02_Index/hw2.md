@@ -37,6 +37,7 @@ SELECT * FROM purchases
 WHERE status = 'completed';
 ```
 
+<img width="1175" height="306" alt="image" src="https://github.com/user-attachments/assets/1f5e68b8-8198-4e92-9f2a-56a14ddc6bbc" />
 
 ```sql
 -- Создание B-tree индекса
@@ -96,6 +97,7 @@ SELECT * FROM worker_assignments
 WHERE work_id IN (5, 10, 15, 20);
 ```
 
+<img width="1593" height="403" alt="image" src="https://github.com/user-attachments/assets/1ca3b8f4-a7b2-4fab-8865-f647959e7750" />
 
 # 4 Запрос
 
@@ -106,8 +108,6 @@ SELECT * FROM workers
 WHERE login LIKE '%1@mail.com';
 ```
 
-
-
 ```sql
 -- Создание B-tree индекса
 CREATE INDEX idx_workers_login_btree ON workers USING btree(login);
@@ -117,6 +117,7 @@ EXPLAIN (ANALYZE, BUFFERS)
 SELECT * FROM workers 
 WHERE login LIKE '%1@mail.com';
 ```
+
 
 ```sql
 -- Создание Hash индекса
