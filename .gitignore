@@ -1,4 +1,4 @@
 .env
-
+.idea/*
 !.env.example
 /s2/venv

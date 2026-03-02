@@ -1,27 +1,45 @@
+version: "3.9"
+
 services:
   postgres:
     container_name: postgres
-    image: postgres:latest
+    image: postgres:15
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      POSTGRES_DB: db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_pass
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
 
   flyway:
-    image: flyway/flyway:latest
+    image: flyway/flyway
     volumes:
       - ./db/migrations:/flyway/sql
     depends_on:
       - postgres
+    command:
+      - "migrate"
+      - "-baselineOnMigrate=true"
     environment:
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
-      FLYWAY_USER: ${POSTGRES_USER}
-      FLYWAY_PASSWORD: ${POSTGRES_PASSWORD}
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/db
+      FLYWAY_USER: admin
+      FLYWAY_PASSWORD: admin_pass
       FLYWAY_BASELINE_VERSION: 1
       FLYWAY_BASELINE_DESCRIPTION: "Initial baseline"
-      FLYWAY_SCHEMAS: public 
+      FLYWAY_SCHEMAS: public
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
 
 volumes:
-  db_data:
+  pg_data:
