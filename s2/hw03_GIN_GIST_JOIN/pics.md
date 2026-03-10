@@ -393,3 +393,12 @@ FROM items i
 |Execution Time: 0.472 ms                                                                                                                                    |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
+
+## Graphana
+
+![](resources/version.png)
+![](resources/2.png)
+![](resources/3.png)
+![](resources/4.png)
+![](resources/5.png)
+![](resources/6.png)
