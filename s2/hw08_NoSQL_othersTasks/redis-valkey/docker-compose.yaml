@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  valkey:
+    image: docker.io/bitnami/valkey:latest
+    container_name: valkey-server
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      # - VALKEY_PASSWORD=my_secure_password  # раскомментировать для пароля
+    volumes:
+      - valkey-data:/bitnami/valkey/data
+    restart: unless-stopped
+
+volumes:
+  valkey-data:
