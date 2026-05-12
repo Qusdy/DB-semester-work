@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/taskqueue
+    username: taskuser
+    password: taskpass
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+    show-sql: false
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      separator: "^^"
+
+producer:
+  tasks-per-second: 100
+  critical-task-ratio: 0.2
+
+consumer:
+  poll-interval-ms: 100
+  processing-time-ms: 200
+  use-notify: true
